@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>איך נותנים משוב על שיחות · CloudChat</title>
+<meta name="description" content="מדריך קצר: איך נותנים משוב על שיחות הסוכן בפורטל, ואיך כותבים משוב שבאמת משפר">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --brand:#5b4be6; --brand-soft:#f4f3ff; --brand-line:#ddd9ff;
+  --ink:#161a26; --muted:#5f6478; --line:#e6e8f0; --bg:#f6f7fb;
+  --ok:#12b76a; --warn:#f0b429; --warn-bg:#fff9ec; --warn-line:#f3dda8;
+  --good:#e9f9f0; --good-line:#bfe9d1; --bad:#fdeeee; --bad-line:#f6cfcf;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Heebo',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+.wrap{max-width:900px;margin:0 auto;padding:28px 20px 64px}
+header{text-align:center;padding:14px 0 26px}
+.logo{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:14px;color:var(--muted);margin-bottom:18px}
+.logo i{width:10px;height:10px;border-radius:50%;background:var(--brand);display:block}
+h1{font-size:clamp(25px,4.4vw,37px);line-height:1.2;font-weight:800;letter-spacing:-.3px}
+.lead{font-size:clamp(14px,2vw,17px);color:var(--muted);margin-top:12px}
+.lead b{color:var(--ink);font-weight:600}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;margin-bottom:18px;box-shadow:0 1px 2px rgba(20,25,50,.04)}
+.step{display:flex;gap:16px;align-items:flex-start}
+.badge{flex:0 0 36px;height:36px;border-radius:50%;background:var(--brand);color:#fff;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.body{flex:1;min-width:0}
+h2{font-size:clamp(17px,2.4vw,20px);font-weight:700;line-height:1.35;margin-bottom:6px}
+h3{font-size:17px;font-weight:700;margin-bottom:12px}
+p{font-size:clamp(14px,1.9vw,15.5px);color:#3f4457}
+p+p{margin-top:8px}
+.hint{color:var(--muted);font-size:14px;margin-top:6px}
+.urlbox{margin-top:14px;background:var(--brand-soft);border:1px solid var(--brand-line);border-radius:12px;padding:13px 15px;direction:ltr;text-align:left;font-size:13.5px;color:#3b3596;word-break:break-all;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.btn{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:var(--brand);color:#fff;text-decoration:none;font-weight:600;font-size:15px;padding:12px 20px;border-radius:12px;transition:transform .12s ease,background .12s ease}
+.btn:hover{background:#4c3dd6;transform:translateY(-1px)}
+.figure{margin-top:16px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fbfbfd;padding:10px}
+.figure img{display:block;width:100%;height:auto;border-radius:6px}
+figcaption{font-size:12.5px;color:#8a8fa3;text-align:center;margin-top:9px}
+.fields{list-style:none;margin-top:14px;display:grid;gap:10px}
+.fields li{display:flex;gap:10px;background:#fbfbfd;border:1px solid var(--line);border-radius:12px;padding:11px 14px;font-size:14.5px;line-height:1.5}
+.fields .k{font-weight:700;flex:0 0 auto;color:var(--ink)}
+.fields .v{color:var(--muted)}
+.note{margin-top:14px;background:var(--brand-soft);border:1px solid var(--brand-line);border-radius:12px;padding:13px 16px;font-size:14px;color:#3b3596}
+.note b{color:#2b2570}
+.flowline{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px}
+.chip{background:#f1f0fb;border:1px solid var(--brand-line);color:#3b3596;border-radius:999px;padding:7px 14px;font-size:13.5px;font-weight:600}
+.arrow{color:#b6b0d6;font-weight:700}
+.rules{display:grid;gap:14px;margin-top:6px}
+.rule{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 20px;box-shadow:0 1px 2px rgba(20,25,50,.04)}
+.rule h4{font-size:16px;font-weight:700;margin-bottom:8px;display:flex;gap:10px;align-items:baseline}
+.rule h4 i{flex:0 0 26px;height:26px;border-radius:50%;background:#efeefc;color:var(--brand);font-style:normal;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;transform:translateY(-1px)}
+.rule p{font-size:14.5px;color:#4a4f61}
+.ex{display:grid;gap:8px;margin-top:10px}
+.ex div{font-size:14px;border-radius:10px;padding:10px 13px;line-height:1.5}
+.ex .no{background:var(--bad);border:1px solid var(--bad-line);color:#7d2626}
+.ex .yes{background:var(--good);border:1px solid var(--good-line);color:#125c3a}
+.ex b{font-weight:700}
+.tip{margin-top:18px;background:var(--warn-bg);border:1px solid var(--warn-line);border-right:6px solid var(--warn);border-radius:14px;padding:16px 18px;font-size:14.5px;color:#4a3f1f}
+.tip .ttl{font-weight:700;color:#7a5b00;display:block;margin-bottom:5px}
+footer{text-align:center;color:#9aa0b0;font-size:12.5px;padding-top:12px}
+@media (max-width:600px){
+  .wrap{padding:20px 14px 48px}
+  .card,.rule{padding:18px 16px;border-radius:16px}
+  .figure img{width:100%}
+  .urlbox{font-size:12px;padding:11px 12px}
+  .fields li{flex-direction:column;gap:2px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo"><i></i>CloudChat · טיק דובאי</div>
+    <h1>איך נותנים משוב על שיחות בפורטל</h1>
+    <div class="lead">שלושים שניות לשיחה. <b>המשוב הוא הדרך היחידה שלנו לדעת מה הסוכן פספס</b>, ומה שממנו נבנה השיפור שלו.</div>
+  </header>
+
+  <section class="card">
+    <div class="step">
+      <div class="badge">1</div>
+      <div class="body">
+        <h2>נכנסים לפורטל</h2>
+        <p>עם המשתמש והסיסמה שקיבלתם. אם הסיסמה נשכחה, יש קישור "שכחתי סיסמה" מתחת לשדות.</p>
+        <div class="urlbox">https://portal.cloudchat.co.il/portal/login</div>
+        <a class="btn" href="https://portal.cloudchat.co.il/portal/login" target="_blank" rel="noopener">כניסה לפורטל <span>‎←</span></a>
+        <figure class="figure"><img src="login.png" alt="מסך הכניסה לפורטל"></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="step">
+      <div class="badge">2</div>
+      <div class="body">
+        <h2>פותחים את השיחה שרוצים למשב</h2>
+        <p>בתפריט הימני: "שיחות". אפשר לחפש לפי שם, טלפון או טקסט, ולסנן לפי פתוחה / אצל נציג / סגורה. לחיצה על השיחה פותחת אותה.</p>
+        <figure class="figure"><img src="list.png" alt="מסך השיחות"><figcaption>רשימת השיחות מימין, השיחה הנבחרת משמאל.</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="step">
+      <div class="badge">3</div>
+      <div class="body">
+        <h2>לוחצים על כפתור המשוב (1) בראש השיחה</h2>
+        <p>הכפתור הוא סימן היד המרימה. מתחתיו נפתחת החלונית של המשוב, כשהיא כבר מכוונת לשיחה הזו.</p>
+        <p class="hint">אם רואים יותר מדי שורות של כלים ושלבים, החליקו את "פשוט" (2) כדי לראות רק את ההודעות.</p>
+        <figure class="figure"><img src="conv.png" alt="מסך השיחה עם כפתור המשוב"><figcaption>1: כפתור המשוב. 2: תצוגה פשוטה, בלי שורות טכניות.</figcaption></figure>
+        <div class="note">טיפ מהיר: ליד כל הודעת סוכן יש יד מרימה קטנה. לחיצה עליה פותחת את המשוב כשהוא כבר מסומן לאותה הודעה, בלי לבחור "מתייחס ל" ידנית.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="step">
+      <div class="badge">4</div>
+      <div class="body">
+        <h2>ממלאים את הטופס ולוחצים "שליחת משוב"</h2>
+        <figure class="figure"><img src="form.png" alt="טופס המשוב"><figcaption>טופס המשוב, עם דוגמה למשוב ממוקד בהודעה מסוימת.</figcaption></figure>
+        <ul class="fields">
+          <li><span class="k">סוג הבעיה</span><span class="v">תשובה לא נכונה · טון ואופן הדיבור · חסר ידע · בעיה בכלי או בחיבור · אחר</span></li>
+          <li><span class="k">חומרה</span><span class="v">נמוכה · בינונית · גבוהה. לפי הנזק ללקוח, לא לפי העצבים שלנו.</span></li>
+          <li><span class="k">מתייחס ל</span><span class="v">השיחה כולה · הודעה מסוימת · שלב טכני. זה מה שהכי מקל עלינו לתקן.</span></li>
+          <li><span class="k">מה היה לא בסדר</span><span class="v">טקסט חופשי. כאן נכנס התוכן שבאמת מזיז את הסוכן.</span></li>
+        </ul>
+        <div class="note">המשוב נשמר בחשבון שלכם, לא נשלח ללקוח, ולא משנה את הסוכן עד שתאשרו את השיפור.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="step">
+      <div class="badge">5</div>
+      <div class="body">
+        <h2>רואים מה קרה עם המשוב</h2>
+        <p>בתפריט: "משוב". כל משוב מקבל סטטוס, ואתם רואים בדיוק איפה הוא עומד.</p>
+        <div class="flowline">
+          <span class="chip">חדש</span><span class="arrow">←</span>
+          <span class="chip">נותח</span><span class="arrow">←</span>
+          <span class="chip">הצעה ממתינה לאישור</span><span class="arrow">←</span>
+          <span class="chip">אושר</span><span class="arrow">←</span>
+          <span class="chip">הוחל</span>
+        </div>
+        <figure class="figure"><img src="statuses.png" alt="מסך המשוב"><figcaption>מסך המשוב: סינון לפי סטטוס, סוג וחומרה.</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <h3 style="margin:26px 0 12px">איך כותבים משוב שבאמת משפר</h3>
+  <div class="rules">
+    <div class="rule">
+      <h4><i>1</i>כותבים מה היה חסר, לא "לא טוב"</h4>
+      <p>משוב כללי לא אומר לנו מה לתקן. עובדה, שם, מספר.</p>
+      <div class="ex">
+        <div class="no"><b>לא:</b> "התשובה לא טובה."</div>
+        <div class="yes"><b>כן:</b> "הסוכן אמר שאין מסעדות כשרות במרינה. יש שתיים, וזה מה שהלקוח חיפש."</div>
+      </div>
+    </div>
+    <div class="rule">
+      <h4><i>2</i>מסמנים את ההודעה המדויקת</h4>
+      <p>בשדה "מתייחס ל" בוחרים את ההודעה שפספסה. זה חוסך לנו חיפוש, ומראה לנו לאיזה שלב בשיחה הכוונה.</p>
+    </div>
+    <div class="rule">
+      <h4><i>3</i>כותבים את המידע הנכון</h4>
+      <p>אם אתם יודעים את התשובה, כתבו אותה. זה הופך את המשוב לידע חדש בסוכן, לא רק לתלונה.</p>
+      <div class="ex">
+        <div class="yes"><b>כן:</b> "כניסה לבורג' ח'ליפה עולה 169 דרהם, לא 99. ילד עד 4 חינם."</div>
+      </div>
+    </div>
+    <div class="rule">
+      <h4><i>4</i>חומרה לפי הנזק ללקוח</h4>
+      <p><b>גבוהה:</b> מידע שגוי, מספר כספי, לקוח תקוע או מפספס הזמנה.<br>
+         <b>בינונית:</b> חסר מידע, תשובה חלקית, ניסוח מבלבל.<br>
+         <b>נמוכה:</b> טון, אורך, ניסוח קוסמטי.</p>
+    </div>
+    <div class="rule">
+      <h4><i>5</i>בעיה אחת למשוב אחד</h4>
+      <p>שלוש בעיות בהודעה אחת נקראות כתלונה כללית. שלושה משובים קצרים מטופלים כמו שלושה תיקונים.</p>
+    </div>
+    <div class="rule">
+      <h4><i>6</i>תקלה טכנית זה סוג אחר</h4>
+      <p>לא נשלח קישור, לא נמצאה הזמנה, לא הועבר לנציג: בוחרים "בעיה בכלי או בחיבור" וכותבים מה בדיוק לא עבד. אלו באגים, לא ידע חסר.</p>
+    </div>
+    <div class="rule">
+      <h4><i>7</i>בלי פרטים אישיים של הלקוח</h4>
+      <p>לא טלפון, לא ת"ז, לא כתובת. מספיק שם פרטי או מספר השיחה. המשוב נשמר אצלכם, אבל עדיף נקי.</p>
+    </div>
+  </div>
+
+  <div class="tip">
+    <span class="ttl">הכלל שמחזיק את כל השאר</span>
+    כתבו משוב כאילו אתם מסבירים לעובד חדש מה היה צריך להיעשות בשיחה הזו. אם אחרי הקריאה אפשר לתקן בלי לחזור לשיחה, זה משוב טוב.
+  </div>
+
+  <footer>טיק דובאי · מדריך קצר · אוקטובר 2026</footer>
+</div>
+</body>
+</html>
