@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>התראות צ'אט בדסקטופ · CloudChat</title>
+<meta name="description" content="מדריך קצר: איך מפעילים התראות צ'אט בשולחן העבודה בקלאודצ'אט">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --brand:#5b4be6; --brand-soft:#f4f3ff; --brand-line:#ddd9ff;
+  --ink:#161a26; --muted:#5f6478; --line:#e6e8f0; --bg:#f6f7fb;
+  --ok:#12b76a; --warn:#f0b429; --warn-bg:#fff9ec; --warn-line:#f3dda8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Heebo',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+.wrap{max-width:880px;margin:0 auto;padding:28px 20px 64px}
+header{text-align:center;padding:14px 0 30px}
+.logo{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:14px;color:var(--muted);margin-bottom:18px}
+.logo i{width:10px;height:10px;border-radius:50%;background:var(--brand);display:block}
+h1{font-size:clamp(25px,4.4vw,37px);line-height:1.2;font-weight:800;letter-spacing:-.3px}
+.lead{font-size:clamp(14px,2vw,17px);color:var(--muted);margin-top:12px}
+.lead b{color:var(--ink);font-weight:600}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px 22px 20px;margin-bottom:18px;box-shadow:0 1px 2px rgba(20,25,50,.04)}
+.step{display:flex;gap:16px;align-items:flex-start}
+.badge{flex:0 0 36px;height:36px;border-radius:50%;background:var(--brand);color:#fff;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.body{flex:1;min-width:0}
+h2{font-size:clamp(17px,2.4vw,20px);font-weight:700;line-height:1.35;margin-bottom:6px}
+p{font-size:clamp(14px,1.9vw,15.5px);color:#3f4457}
+.hint{color:var(--muted);font-size:14px;margin-top:4px}
+.urlbox{margin-top:14px;background:var(--brand-soft);border:1px solid var(--brand-line);border-radius:12px;padding:13px 15px;direction:ltr;text-align:left;font-size:13.5px;color:#3b3596;word-break:break-all;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.btn{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:var(--brand);color:#fff;text-decoration:none;font-weight:600;font-size:15px;padding:12px 20px;border-radius:12px;transition:transform .12s ease,background .12s ease}
+.btn:hover{background:#4c3dd6;transform:translateY(-1px)}
+.btn span{font-size:17px;line-height:1}
+.figure{margin-top:16px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fbfbfd;padding:10px}
+.figure img{display:block;width:100%;height:auto}
+@media (max-width:600px){.figure{overflow-x:auto}.figure img{width:180%;max-width:none}.figure figcaption{font-size:12px}}
+figcaption{font-size:12.5px;color:#8a8fa3;text-align:center;margin-top:9px;padding-bottom:2px}
+.side{display:flex;gap:14px;align-items:center;margin-top:14px;background:#fbfbfd;border:1px solid var(--line);border-radius:14px;padding:12px}
+.side img{width:210px;max-width:45%;height:auto;border-radius:8px;border:1px solid var(--line);flex:0 0 auto}
+.side p{font-size:13.5px;color:var(--muted);line-height:1.55}
+.checks{list-style:none;margin-top:10px}
+.checks li{font-size:15px;display:flex;gap:9px;align-items:center;margin-top:6px}
+.checks .tick{width:19px;height:19px;border-radius:5px;background:var(--brand);color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center;flex:0 0 19px}
+.checks .off{color:var(--muted)}
+.checks .off .tick{background:#fff;border:1.5px solid #c7cbd9;color:transparent}
+.tip{margin-top:18px;background:var(--warn-bg);border:1px solid var(--warn-line);border-right:6px solid var(--warn);border-radius:14px;padding:16px 18px;font-size:14.5px;color:#4a3f1f}
+.tip b{color:#7a5b00}
+.tip .ttl{font-weight:700;color:#7a5b00;display:block;margin-bottom:5px}
+footer{text-align:center;color:#9aa0b0;font-size:12.5px;padding-top:12px}
+footer a{color:#7d74c9;text-decoration:none}
+@media (max-width:600px){
+  .wrap{padding:20px 14px 48px}
+  .card{padding:18px 16px;border-radius:16px}
+  .side{flex-direction:column;align-items:flex-start}
+  .side img{width:100%;max-width:100%}
+  .urlbox{font-size:12px;padding:11px 12px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo"><i></i>CloudChat · TIC Dubai</div>
+    <h1>איך מפעילים התראות צ'אט בדסקטופ</h1>
+    <div class="lead">שלושה צעדים, פחות מדקה. <b>פעם אחת בכל מחשב</b>, בדפדפן שבו עובדים.</div>
+  </header>
+
+  <section class="card">
+    <div class="step">
+      <div class="badge">1</div>
+      <div class="body">
+        <h2>נכנסים לקישור, כשאתם מחוברים לקלאודצ'אט</h2>
+        <p>הקישור פותח ישר את אזור ההגדרות של ההתראות, בלי לחפש בתפריט.</p>
+        <div class="urlbox">https://console.thecloud.chat/flow/f302171#/setting/livechat</div>
+        <a class="btn" href="https://console.thecloud.chat/flow/f302171#/setting/livechat" target="_blank" rel="noopener">פתיחת ההגדרות <span>‎←</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="step">
+      <div class="badge">2</div>
+      <div class="body">
+        <h2>גוללים לקטע "התראות צ'אט בשולחן העבודה" בתחתית העמוד</h2>
+        <p>אם צריך למצוא ידנית: גלגל השיניים בתפריט הימני, ואז "איזור הצ'אטים".</p>
+        <div class="side">
+          <img src="menu.png" alt="תפריט ההגדרות, איזור הצ'אטים">
+          <p>הקטע נמצא בתחתית רשימת ההגדרות של איזור הצ'אטים, מתחת להגדרה "פרופיל דואר אלקטרוני לצ'אט".</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="step">
+      <div class="badge">3</div>
+      <div class="body">
+        <h2>מסמנים את שני הצ'קים, ולוחצים "שמור"</h2>
+        <p>הצ'קים המסומנים בירוק למטה:</p>
+        <ul class="checks">
+          <li><span class="tick">✓</span>שיחה שהוקצתה לי</li>
+          <li><span class="tick">✓</span>משיחה בתיקיית לא מוקצים</li>
+          <li class="off"><span class="tick">✓</span>השתק קול: נשאר לא מסומן</li>
+        </ul>
+        <figure class="figure">
+          <img src="settings.png" alt="הגדרות התראות צ'אט בשולחן העבודה">
+          <figcaption>המסך בהגדרות: שני הצ'קים הנכונים, וכפתור השמירה שמתחתם.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <div class="tip">
+    <span class="ttl">אם הדפדפן שואל "לאפשר התראות?"</span>
+    לוחצים <b>"אפשר"</b>. אם לא נשאל, או שההתראות לא מופיעות, פותחים את הגדרות האתר בדפדפן ומפעילים "התראות" עבור console.thecloud.chat. ההתראות מגיעות כל עוד קלאודצ'אט פתוח בלשונית, גם ברקע.
+  </div>
+
+  <footer>TIC Dubai · מדריך קצר · אוקטובר 2026</footer>
+</div>
+</body>
+</html>
